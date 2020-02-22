@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.carlos.workshop.domain.Usuario;
 import com.carlos.workshop.repository.UsuarioRepository;
+import com.carlos.workshop.services.exceptions.ObjetoNaoEncontradoException;
 
 @Service
 public class UsuarioService {
@@ -16,5 +17,9 @@ public class UsuarioService {
 	
 	public List<Usuario> listar() {
 		return repo.findAll();
+	}
+	
+	public Usuario obterPorId(String usuarioId) {
+		return repo.findById(usuarioId).orElseThrow(() -> new ObjetoNaoEncontradoException("Usuário não encontrado"));
 	}
 }
