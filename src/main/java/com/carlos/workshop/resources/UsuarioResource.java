@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carlos.workshop.domain.Usuario;
+import com.carlos.workshop.domain.dto.UsuarioDTO;
 import com.carlos.workshop.services.UsuarioService;
 
 @RestController
@@ -28,5 +31,10 @@ public class UsuarioResource {
 	@GetMapping(value = "/{usuarioId}")
 	public ResponseEntity<Usuario> obterPorId(@PathVariable String usuarioId) {
 		return ResponseEntity.ok(service.obterPorId(usuarioId));
+	}
+	
+	@PostMapping
+	public ResponseEntity<Usuario> inserir(@RequestBody UsuarioDTO usuario) {
+		return ResponseEntity.created(null).body(service.inserir(usuario.toUsuario()));
 	}
 }

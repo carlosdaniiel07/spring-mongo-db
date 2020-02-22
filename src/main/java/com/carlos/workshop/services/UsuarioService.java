@@ -22,4 +22,8 @@ public class UsuarioService {
 	public Usuario obterPorId(String usuarioId) {
 		return repo.findById(usuarioId).orElseThrow(() -> new ObjetoNaoEncontradoException("Usuário não encontrado"));
 	}
+	
+	public Usuario inserir(Usuario usuario) {
+		return repo.save(usuario);
+	}
 }
