@@ -27,6 +27,10 @@ public class UsuarioService {
 		return repo.save(usuario);
 	}
 	
+	public Usuario atualizar(Usuario usuario) {
+		return repo.save(usuario);
+	}
+	
 	public void remover(String usuarioId) {
 		repo.deleteById(usuarioId);
 	}
