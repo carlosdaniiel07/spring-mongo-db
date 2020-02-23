@@ -1,6 +1,7 @@
 package com.carlos.workshop;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -36,5 +37,9 @@ public class SpringMongoDbApplication implements CommandLineRunner {
 		postagens.add(new Postagem(null, new Date(System.currentTimeMillis()), "Voltei!", "Voltei de viajem!!!", autor));
 		
 		postagens.forEach((Postagem x) -> postagemService.inserir(x));
+		
+		autor.setPostagens(postagens);
+		
+		usuarioService.atualizar(autor);
 	}
 }
