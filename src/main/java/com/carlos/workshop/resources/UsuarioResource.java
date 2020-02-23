@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.carlos.workshop.domain.Postagem;
 import com.carlos.workshop.domain.Usuario;
 import com.carlos.workshop.domain.dto.UsuarioDTO;
 import com.carlos.workshop.services.UsuarioService;
@@ -33,6 +34,11 @@ public class UsuarioResource {
 	@GetMapping(value = "/{usuarioId}")
 	public ResponseEntity<Usuario> obterPorId(@PathVariable String usuarioId) {
 		return ResponseEntity.ok(service.obterPorId(usuarioId));
+	}
+	
+	@GetMapping(value = "/{usuarioId}/postagens")
+	public ResponseEntity<List<Postagem>> listarPostagens(@PathVariable String usuarioId) {
+		return ResponseEntity.ok(service.listarPostagens(usuarioId));
 	}
 	
 	@PostMapping

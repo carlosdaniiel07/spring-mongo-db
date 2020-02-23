@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.carlos.workshop.domain.Postagem;
 import com.carlos.workshop.domain.Usuario;
 import com.carlos.workshop.repository.UsuarioRepository;
 import com.carlos.workshop.services.exceptions.ObjetoNaoEncontradoException;
@@ -17,6 +18,11 @@ public class UsuarioService {
 	
 	public List<Usuario> listar() {
 		return repo.findAll();
+	}
+	
+	public List<Postagem> listarPostagens(String usuarioId) {
+		Usuario usuario = this.obterPorId(usuarioId);
+		return usuario.getPostagens();
 	}
 	
 	public Usuario obterPorId(String usuarioId) {
